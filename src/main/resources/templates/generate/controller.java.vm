@@ -1,0 +1,25 @@
+package $!{packageController};
+
+import $!{packageEntity}.$!{entity};
+import $!{packageEntity}.$!{example};
+import $!{packageService}.$!{service};
+import $!{baseController};
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+
+/**
+ * $!{controllerName}
+ * @author $!{author}
+ * @date $!{date}
+ */
+
+@Controller
+@RequestMapping("/$!{request}")
+public class $!{controllerName} extends $!{baseControllerName}<$!{entity}, $!{example}> {
+
+    @Autowired
+    $!{serviceName} $!{varService};
+}

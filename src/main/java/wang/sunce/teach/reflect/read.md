@@ -1,0 +1,214 @@
+###Chapter1 Class类的使用
+
+1.获取对象的类类型，三种方法
+
+        /**方法1：任何一个类都隐含一个静态的成员变量class*/
+        Class c1 =Foo.class;
+        
+        /**方法2：通过已知该类的对象通过getClass方法获取*/
+        Class c2 =foo.getClass();
+        
+        /**方法3：通过Class类的静态方法forName 获取*/
+        Class c3 = null;
+         try{
+             c3 = Class.forName("wang.sunce.teach.reflect.chapter1.Foo");
+         }catch (ClassNotFoundException e){
+             e.printStackTrace();
+         }
+
+
+2.根据类类型创建类对象
+    
+        try {
+            Foo foo2 = (Foo)c1.newInstance();
+            foo2.print();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+
+###Chapter2 类的动态加载
+
+类加载机制分为：静态加载以及动态加载；根据具体的使用场景，确定类的加载机制；
+
+静态加载：加载的类对象，在编译时期就确定，如果类不存在，会有编译异常
+
+动态加载：在程序执行的时候加载具体的类对象，如果类不存在，则会抛出ClassNotFoundException
+
+
+###Chapter3 获取类的方法
+
+获取到类类型以后，可以通过类类型，获取到类的相关信息，具体包括类的方法，类的成员变量；
+类的方法是对象
+
+        
+        Class clazz = object.getClass();
+        System.out.println("类类型是：" + clazz);
+        String name = clazz.getName();
+        System.out.println("类名称是：" + name);
+        String simpleName = clazz.getSimpleName();
+        System.out.println("类简称是：" + simpleName);
+
+        /**
+         * 获取类方法
+         * getMethods 获取到所有的public 函数，包含父类继承的方法
+         * getDeclaredMethods 获取到自己声明的 函数，没有访问限制
+         */
+        Method[] methods = clazz.getMethods();
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        
+
+getMethods :可以获取到类的所有public函数，包括从父类继承而来的public函数
+
+getDeclaredMethods ：获取到所有自己声明的函数，没有访问限制
+
+获取方法的访问修饰符：Modifier.toString(method.getModifiers());
+
+
+###Chapter4 获取类的成员变量以及构造函数
+
+类的成员变量也是对象，类的构造函数也是对象；与获取类的方法的方类似
+
+        /**
+         * 获取类的成员变量
+         * getFields 获取到所有的public 成员变量，包含父类继承的成员变量
+         * getDeclaredMethods 获取到自己声明的 函数，没有访问限制
+         */
+        Field[] fields = clazz.getFields();
+        Field[] declaredFields = clazz.getDeclaredFields();
+        
+        /**
+         * 获取类的成员变量
+         * getConstructors 获取到所有的public构造函数
+         * getDeclaredConstructors 获取到所有构造函数
+         */
+        Constructor[] constructors = clazz.getConstructors();
+        Constructor[] declaredConstructors = clazz.getDeclaredConstructors();
+        
+Class 还有许多其他方法，用于获取关于类的信息；想要获取与类相关的信息；首先要获取到对象的类类型
+
+
+###Chapter5 方法的反射
+
+1.获取某个方法
+    
+    获取方法的名称，获取方法的参数列表
+
+2.方法的反射操作
+
+    通过Method.invoke()方法调用
+    A a = new A();
+    Class aClazz = a.getClass();
+    try {
+        Method print = aClazz.getMethod("print", new Class[]{int.class, int.class});
+        Method print2 = aClazz.getMethod("print", String.class, String.class);
+        print.invoke(a, 1,1);
+        print2.invoke(a, "Hello","world");
+        //方法的反射式利用 方法的对象来调用，而不是通过a.print来调用;实现的效果跟a.print 相同
+    } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+    } catch (IllegalAccessException e) {
+        e.printStackTrace();
+    } catch (InvocationTargetException e) {
+        e.printStackTrace();
+    }
+
+
+###Chapter6 通过方法的反射认识泛型的实质
+
+       List<String> strList=new ArrayList<>();
+       List list=new ArrayList();
+       Class aClass = strList.getClass();
+       Class bClass = list.getClass();
+       System.out.println(aClass==bClass);
+       //true,执行结果为true，说明集合的泛型在编译之后是去泛型化的
+       strList.add("hello");
+       //strList.add(1);//编译报错
+       try {
+           Method add = aClass.getMethod("add", Object.class);
+           add.invoke(strList,1);
+       System.out.println(strList.size());
+           System.out.println(strList);
+           // 所以泛型就是在编译阶段限制类型，通过反射可以绕过泛型
+       } catch (NoSuchMethodException e) {
+           e.printStackTrace();
+       }catch (IllegalAccessException e) {
+           e.printStackTrace();
+       } catch (InvocationTargetException e) {
+           e.printStackTrace();
+       }
+
+###Chapter7 成员变量的反射
+
+    通过成员变量的反射，可以在程序运行阶段改变成员变量的值
+    需求：将字符串类型为String 的成员变量的值，所有的'b' 替换成 'a'
+    当类的所有成员变量修饰符均为 public 时，获取到类类型以后，通过getFields();即可获取到所有的成员变量
+    通过Field类的 get(Object obj)，可以获取到该成员变量的值；
+    通过Field类的 set(Object obj, Object value) 可以改变该成员变量的值
+    
+    当类的成员变量的修饰符 包含 default,protected 时，通过getDeclaredFields;即可获取到所有的成员变量
+    同样的也是通过 Field 类的 get,set 方法获取以及修改 成员变量的值
+    
+    当类的成员变量的修饰符 包含 private 时，通过getDeclaredFields 获取成员变量后
+    需要 将修饰符是private 的成员变量的 访问属性设置为 true 才可以 获取和修改该成员变量的值
+    field.setAccessible(true);
+    
+    私有方法的反射也是同理，需要设置方法的访问属性为 true，method.setAccessible(true);
+    
+    //修改父类的成员变量或者方法需要先获取到父类的类类型 例如：String.class.getSuperclass()
+
+###Chapter8 构造函数的反射
+
+    获取构造函数的方法与获取成员变量以及类的方法的 方式是 基本是大同小异的
+    getConstructors 可以获取 修饰符为 public 的构造函数
+    getDeclaredConstructors 可以获取 本类声明的所有构造函数
+    
+    需求：某个类的无参数构造函数是私有的，利用无参数构造函数，获取一个类的实例对象
+    
+
+###Chapter9 java的类加载机制
+    
+    JVM中类的加载是由 加载，连接，初始化 三个步骤来完成的。
+    
+    其中，加载就是指将class文件读入内存，并为之创建一个Class对象，任何类被使用时系统都会建立一个Class对象
+    
+    然后是连接，连接由 验证，准备，解析 三个过程；
+    验证：确保被加载类的正确性
+    准备：负责为类的静态成员分配内存，并设置默认初始化值
+    解析：将类中的符号引用替换为直接引用
+    
+    初始化：局部变量保存在栈区：必须手动初始化
+    new 的对象保存在堆区：虚拟机会进行默认初始化，基本数据类型初始化值为0，引用类型初始化值为null
+    
+类加载器
+    负责将.class文件加载到内存中，并为之生成对应的Class对象；
+    虽然我们在开发过程中不需要关心类加载机制，但是了解这个机制我们就能更好的理解程序的运行
+    
+类加载器
+虚拟机设计团队把加载动作放到JVM外部实现，以便让应用程序决定如何获取所需的类，JVM提供了3种类加载器：
+
+启动类加载器(Bootstrap ClassLoader)：
+   
+    负责加载 JAVA_HOME\lib 目录中的，或通过-Xbootclasspath参数指定路径中的，且被虚拟机认可（按文件名识别，如rt.jar）的类。
+
+扩展类加载器(Extension ClassLoader)：
+    
+    负责加载 JAVA_HOME\lib\ext 目录中的，或通过java.ext.dirs系统变量指定路径中的类库。
+
+应用程序类加载器(Application ClassLoader)：
+
+    负责加载用户路径（classpath）上的类库。
+    
+默认的类加载器是AppClassLoader,类加载器的父加载器是ExtClassLoader
+
+验证：
+       
+    System.out.println(ClassLoader.getSystemClassLoader());//sun.misc.Launcher$AppClassLoader@18b4aac2
+    System.out.println(ClassLoader.getSystemClassLoader().getParent());//sun.misc.Launcher$ExtClassLoader@254989ff
+    System.out.println(ClassLoader.getSystemClassLoader().getParent().getParent());//null
+    
+说明：通过java.lang.ClassLoader.getSystemClassLoader()可以直接获取到系统类加载器（AppClassLoader）。
+通过以上的代码输出，我们可以判定系统类加载器的父加载器是标准扩展类加载器（ExtClassLoader），但是我们试图获取标准扩展类加载器的父类加载器时确得到了null，
+就是说标准扩展类加载器本身强制设定父类加载器为null。
