@@ -1,0 +1,40 @@
+package wang.sunce.teach.base.chapter2;
+
+public class BoxDemo {
+
+    public static void main(String[] args) {
+        /**
+         * jdk1.4 需要使用
+         * Integer integer =new Integer(1);
+         *
+         * jdk1.5 支持自动拆装箱
+         *
+         * 装箱：即是把基本类型包装成包装类 调用的Integer.valueOf()方法
+         * 拆箱：即是把包装类转换为基本类型，调用的 xxValue()方法，例如：intValue()
+         *
+         */
+        int x = 1;
+        Integer a = 1;
+        Integer b = Integer.valueOf(1);
+        Integer c = new Integer(1);
+        System.out.println("x==a? " + (x == a));
+        System.out.println("x==b? " + (x == b));
+        System.out.println("x==c? " + (x == c));
+        System.out.println("a==b? " + (a == b));
+        System.out.println("a==c? " + (a == c));
+        System.out.println("b==c? " + (b == c));
+
+
+        int y = 128;
+        Integer e = 128;
+        Integer f = Integer.valueOf(128);
+        Integer g = new Integer(128);
+        System.out.println("y==e? " + (y == e));
+        System.out.println("y==f? " + (y == f));
+        System.out.println("y==g? " + (y == g));
+        System.out.println("e==f? " + (e == f));
+        System.out.println("e==g? " + (e == g));
+        System.out.println("f==g? " + (f == g));
+
+    }
+}
