@@ -36,5 +36,23 @@ public class BoxDemo {
         System.out.println("e==g? " + (e == g));
         System.out.println("f==g? " + (f == g));
 
+
+        Integer ai = 1;
+        Integer bi = 2;
+        Integer ci = 3;
+        Integer di = 3;
+        Integer ei = 321;
+        Integer fi = 321;
+        Long gl = 3L;
+        Long hl = 2L;
+
+        System.out.println(ci == di);//true
+        System.out.println(ei == fi);//false
+        System.out.println(ci == (ai + bi));//true
+        System.out.println(ci.equals(ai + bi));//true
+        System.out.println(gl == (ai + bi));//true
+        System.out.println(gl.equals(ai + bi));//false
+        System.out.println(gl.equals(ai + hl));//true
+
     }
 }
