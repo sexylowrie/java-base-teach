@@ -23,6 +23,8 @@ public class BoxDemo {
         System.out.println("a==b? " + (a == b));
         System.out.println("a==c? " + (a == c));
         System.out.println("b==c? " + (b == c));
+        System.out.println("a.equals(c)? " + (a.equals(c)));
+        System.out.println("b.equals(c)? " + (b.equals(c)));
 
 
         int y = 128;
@@ -35,7 +37,8 @@ public class BoxDemo {
         System.out.println("e==f? " + (e == f));
         System.out.println("e==g? " + (e == g));
         System.out.println("f==g? " + (f == g));
-
+        System.out.println("e.equals(g)? " + (e.equals(g)));
+        System.out.println("f.equals(g)? " + (f.equals(g)));
 
         Integer ai = 1;
         Integer bi = 2;
