@@ -1,6 +1,5 @@
 package wang.sunce.teach.reflect.chapter7;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -75,15 +74,4 @@ class SourceStr {
         this.d = d;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("a", a)
-                .append("b", b)
-                .append("c", c)
-                .append("d", d)
-                .append("e", e)
-                .append("f", f)
-                .toString();
-    }
 }

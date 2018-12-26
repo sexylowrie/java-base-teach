@@ -1,7 +1,5 @@
 package wang.sunce.teach.reflect.chapter8;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -45,13 +43,5 @@ class Cons{
 
     private Cons(){
         
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("name", name)
-                .append("age", age)
-                .toString();
     }
 }
