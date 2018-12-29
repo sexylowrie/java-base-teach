@@ -12,3 +12,6 @@
 
 [备受关注的字符串](./src/main/java/xin/sunce/base/chapter4/备受关注的字符串.md)
 
+
+[数组与排序](./src/main/java/xin/sunce/base/chapter5/数组与排序.md)
+
