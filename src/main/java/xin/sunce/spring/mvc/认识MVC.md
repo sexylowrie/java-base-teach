@@ -20,7 +20,7 @@
     一个人的简历是写着熟悉SpringMVC，而对于DispatcherServlet一问三不知，那么这个人显然是不合格的。以下是
     DispatcherServlet的类图。
        
-![3efa8206411ff486e0d07c3cb312e058.png](evernotecid://3462E23D-6753-4F36-928E-F36CC69A9260/appyinxiangcom/10082003/ENResource/p232)
+![DispatcherServlet](./images/DispatcherServlet.png)
 
         了解清楚类图以后，我这里提出一些问题大家思考一下，你了解Servlet的生命周期么？Servlet跟
     DispatcherServlet有什么关系？又有什么区别？
@@ -64,7 +64,7 @@ public interface Servlet {
     那么我们一起看看DispatcherServlet的核心service方法。
        
 如下：
-![9f802e5ab05225625ff1d83cb73870c8.png](evernotecid://3462E23D-6753-4F36-928E-F36CC69A9260/appyinxiangcom/10082003/ENResource/p233)
+![doService](./images/doService.png)
         
         我们在DispatcherServlet并没有找到service方法，而是找到一个doService方法，我们在DispatcherServlet
     的父类FrameworkServlet中找到了service方法的实现，代码片段如下：
@@ -198,14 +198,14 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 #### getHandler()详解
 图initHandlerMapping
-![cb1946858dffbc3f787de91bfce1e2fa.png](evernotecid://3462E23D-6753-4F36-928E-F36CC69A9260/appyinxiangcom/10082003/ENResource/p234)
+![initHandlerMapping](./images/initHandlerMapping.png)
 
 图getHandler
-![8eb6318cb473bcf1388b4442d1b39aa1.png](evernotecid://3462E23D-6753-4F36-928E-F36CC69A9260/appyinxiangcom/10082003/ENResource/p235)
+![getHandler](./images/getHandler.png)
 
 **图initHandlerMapping**给我们展示了List<HandlerMapping> handlerMappings的初始化过程，注意是懒加载；ApplicationContext 获取全部的HandlerMapping类，并且依照Order书序排序
 
-**图getHandler**说明，会根据请求HttpServletRequest迭代循环获取HandlerExecutionChain，知道获取的Handler不为空，Http请求最终会获取到  **RequestMappingHandlerMapping** ；可以通过debug了解该过程
+**图getHandler**说明，会根据请求HttpServletRequest迭代循环获取HandlerExecutionChain，直到获取的Handler不为空，Http请求最终会获取到  **RequestMappingHandlerMapping** ；可以通过debug了解该过程
 
 #### getHandlerAdapter()详解
 
@@ -219,8 +219,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 先了解一下RequestMappingHandlerAdapter继承实现关系
 
-![a33b16a26cea49aa02dcca8ad21112d3.png](evernotecid://3462E23D-6753-4F36-928E-F36CC69A9260/appyinxiangcom/10082003/ENResource/p236)
-
+![RequestHandlerMappingAdapter](./images/RequestHandlerMappingAdapter.png)
 
 用一下时序图梳理handle方法的处理过程
 
@@ -237,7 +236,49 @@ RMH-->>RMH: 调用invokeHandlerMethod 方法
 RMH-->>HandlerMappingAdapter: 返回ModelAndView
 ```
 
+#### processDispatchResult()详解
 
+这个环节会对handle方法返回的ModelAndView进行处理
+
+![processDispatchResult](./images/processDispatchResult.png)
+
+```
+protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    View view;
+    .....
+    view = this.resolveViewName(mv.getViewName(), mv.getModelInternal(), locale, request);
+    .....        
+    view.render(mv.getModelInternal(), request, response);
+        
+ }
+ 
+ protected View resolveViewName(String viewName, Map<String, Object> model, Locale locale, HttpServletRequest request) throws Exception {
+    Iterator var5 = this.viewResolvers.iterator();
+
+    View view;
+    do {
+        if (!var5.hasNext()) {
+            return null;
+        }
+
+        ViewResolver viewResolver = (ViewResolver)var5.next();
+        view = viewResolver.resolveViewName(viewName, locale);
+    } while(view == null);
+
+    return view;
+ }
+    
+```
+
+如此以上便是MVC的大致流程，梳理一下核心点：
+1.用户发送请求
+2.dispatcherServlet 调用 doDispatch方法
+3.从HandlerMappings中获取相应的HandlerExecutionChain
+4.从HandlerMappingAdapters中获取对应的adapter
+5.adapter调用handle方法返回ModelAndView
+6.从viewResolvers获取viewResolver解析ModelAndView为View
+7.dispatcherServlet 给用户响应
+8.用户收到响应
 
 
 
