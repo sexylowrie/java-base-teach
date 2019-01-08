@@ -15,3 +15,6 @@
 
 [数组与排序](./src/main/java/xin/sunce/base/chapter5/数组与排序.md)
 
+
+[集合简介](./src/main/java/xin/sunce/base/chapter6/集合简介.md)
+
