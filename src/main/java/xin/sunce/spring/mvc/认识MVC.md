@@ -271,13 +271,21 @@ protected void render(ModelAndView mv, HttpServletRequest request, HttpServletRe
 ```
 
 如此以上便是MVC的大致流程，梳理一下核心点：
+
 1.用户发送请求
+
 2.dispatcherServlet 调用 doDispatch方法
+
 3.从HandlerMappings中获取相应的HandlerExecutionChain
+
 4.从HandlerMappingAdapters中获取对应的adapter
+
 5.adapter调用handle方法返回ModelAndView
+
 6.从viewResolvers获取viewResolver解析ModelAndView为View
+
 7.dispatcherServlet 给用户响应
+
 8.用户收到响应
 
 
