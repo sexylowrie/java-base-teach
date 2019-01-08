@@ -130,7 +130,8 @@ public void service(ServletRequest req, ServletResponse res) throws ServletExcep
 **重写后的方法的参数，便成为了HttpServletXX，而FrameworkServlet又继承自HttpServlet的子类HttpServletBean，
 所以直到DispatcherServlet这一子类，以下是一张时序图帮你梳理这个过程**
 
-```sequence
+```mermaid
+sequenceDiagram
 Servlet->>HttpServlet: 调用service方法
 HttpServlet->>HttpServlet: 重写service方法，并重载为service②
 HttpServlet->>FrameworkServlet: 重写service②，doGet等方法
