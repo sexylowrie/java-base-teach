@@ -145,9 +145,9 @@ private static int hugeCapacity(int minCapacity) {
 }
 ```
 
-我们发现每次扩容都会带来一次全量的数组拷贝；所以我们想要提高ArrayList的效率就应该减少数组的扩容,应尽可能的指定其Capacity的大小，这也是阿里Java开发规范中所提倡的。 
+我们发现每次扩容都会带来一次全量的数组拷贝；所以我们想要提高ArrayList的效率就应该减少数组的扩容 ，应尽可能的指定其Capacity的大小，这也是阿里Java开发规范中所提倡的。 
 
-其次，add()，add(int index, E element)，set(int index, E element)这三个方法的区别也应该注意；add(int index, E element) 会对现有数组从index开始拷贝，拷贝到index+1往后，共拷贝size-index个元素,然后将现有元素放置于index处;所以index的位置越靠后，需要拷贝的元素越少，效率越高；反之，index的位置越靠前，需要拷贝的元素越多，效率越低。而add()是顺序插入，在不考虑grow的情况下，是不需要拷贝的。
+其次，add()，add(int index, E element)，set(int index, E element)这三个方法的区别也应该注意；add(int index, E element) 会对现有数组从index开始拷贝，拷贝到index+1往后，共拷贝size-index个元素，然后将现有元素放置于index处;所以index的位置越靠后，需要拷贝的元素越少，效率越高；反之，index的位置越靠前，需要拷贝的元素越多，效率越低。而add()是顺序插入，在不考虑grow的情况下，是不需要拷贝的。
 
 #### Vector
 
