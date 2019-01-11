@@ -267,7 +267,9 @@ private static int hugeCapacity(int minCapacity) {
 
 在讲解LinkedList之前，我们先介绍一下双向链表的数据结构，让大家有个简要的了解。
 
-每个节点主要有三部分构成，分别是前节点引用pre，本节点date，后节点引用next；并且first节点的pre引用为last，而last节点的next引用为first，如此便形成双向的链式结构。每次新增节点都需要改变pre节点的next引用，以及next节点的pre引用，还有自身节点的pre，next引用。
+![双向链表数据结构](./images/双向链表数据结构.png)
+
+每个节点主要有三部分构成，分别是前节点引用pre，本节点date，后节点引用next；
 
 下图是LinkedList的类图
 ![LinkedList](./images/LinkedList.png)
