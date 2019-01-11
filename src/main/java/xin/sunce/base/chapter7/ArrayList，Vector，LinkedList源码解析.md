@@ -8,18 +8,21 @@
 思考一下代码执行结果如何？
 ```
 public static void main(String[] args) {
-
+    
+    //未指定容量，指向默认空数组
     List<Integer> list1 = new ArrayList<>();
+    // 正常通过，数组容量变为默认10
     list1.add(0,1);
     System.out.println(list1.get(0));
 
     List<Integer> list2 = new ArrayList();
     list2.set(0, 1);
+    // 运行时异常
     System.out.println(list2.get(0));
 
 }
 ```
-ArrayList中声明了一个对象数组elementData，用于存储数组中的元素；当没有指定集合容量大小的时候，数组等于默认的空数组，当集合的第一个元素add进来时，数组的大小会被指定成默认的大小10；所以list1能够添加成功，而list2则会抛出IndexOutOfBoundsException。具体逻辑见代码：
+为什么呢？我们先通过以下代码来看看add相关方法：
 
 ```
 private static final int DEFAULT_CAPACITY = 10;
@@ -42,18 +45,8 @@ public ArrayList(int initialCapacity) {
     } else if (initialCapacity == 0) {
         this.elementData = EMPTY_ELEMENTDATA;
     } else {
-        throw new IllegalArgumentException("Illegal Capacity: "+
-                                           initialCapacity);
+        throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
     }
-}
-
-/**给指定index的赋值，会替换原有值，替换成功后返回原值*/
-public E set(int index, E element) {
-    rangeCheck(index);
-
-    E oldValue = elementData(index);
-    elementData[index] = element;
-    return oldValue;
 }
 
 /**顺序插入*/
@@ -74,18 +67,31 @@ public void add(int index, E element) {
     size++;
 }
 
-/**范围检查*/
-private void rangeCheck(int index) {
-    if (index >= size)
-        throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-}
-
 /**指定位置add范围检查*/
 private void rangeCheckForAdd(int index) {
     if (index > size || index < 0)
         throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
 }
 
+```
+
+了解了add()，add(int index, E element)方法之后，我们在熟悉一下set(int index, E element)方法
+
+```
+/**给指定index的赋值，会替换原有值，替换成功后返回原值*/
+public E set(int index, E element) {
+    rangeCheck(index);
+
+    E oldValue = elementData(index);
+    elementData[index] = element;
+    return oldValue;
+}
+
+/**范围检查*/
+private void rangeCheck(int index) {
+    if (index >= size)
+        throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+}
 ```
 有的小伙伴可能会说，确实add(int index, E element)，set(int index, E element)两个方法的范围检查不一样，这也只能说明add可以正常添加呀，并没有说明list1的容量变了呀，别着急，我们接着往下看。
 
@@ -125,6 +131,7 @@ private void grow(int minCapacity) {
     if (newCapacity - MAX_ARRAY_SIZE > 0)
         newCapacity = hugeCapacity(minCapacity);
     // minCapacity is usually close to size, so this is a win:
+    /** 数组拷贝*/
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 
@@ -138,7 +145,7 @@ private static int hugeCapacity(int minCapacity) {
 }
 ```
 
-我们发现确认Capacity时，先计算容量Capacity，若计算好的Capacity大于当前数组的length，会进行数组的扩容，最后才是添加元素element；所以我们想要提高ArrayList的效率就应该减少数组的扩容，因为每次扩容都会带来一次全量的数组拷贝，所应尽可能的指定其Capacity的大小，这也是阿里Java开发规范中所提倡的。 
+我们发现每次扩容都会带来一次全量的数组拷贝；所以我们想要提高ArrayList的效率就应该减少数组的扩容,应尽可能的指定其Capacity的大小，这也是阿里Java开发规范中所提倡的。 
 
 其次，add()，add(int index, E element)，set(int index, E element)这三个方法的区别也应该注意；add(int index, E element) 会对现有数组从index开始拷贝，拷贝到index+1往后，共拷贝size-index个元素,然后将现有元素放置于index处;所以index的位置越靠后，需要拷贝的元素越少，效率越高；反之，index的位置越靠前，需要拷贝的元素越多，效率越低。而add()是顺序插入，在不考虑grow的情况下，是不需要拷贝的。
 
@@ -147,14 +154,15 @@ private static int hugeCapacity(int minCapacity) {
 下图是Vector的类图
 ![Vector](./images/Vector.png)
 
-我们可以发现ArrayList跟Vector的类图基本一致，它们都是通过数组实现的，区别主要在于Vector实现是线程安全的，方法实现时添加了synchronized关键字，而ArrayList的实现是非线程安全的；以下我们针对容量，add()，add(int index, E element)，set(int index, E element)，get(int index)进行分析
+我们可以发现ArrayList跟Vector的类图基本一致，那么它们有什么区别呢，我们首先来看add()，add(int index, E element)方法
 
 ```
 /**此构造函数支持初始化容量，指定容量扩增幅度*/
 public Vector(int initialCapacity, int capacityIncrement) {
     super();
     if (initialCapacity < 0)
-        throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
+        throw new IllegalArgumentException("Illegal Capacity: "+
+                                           initialCapacity);
     this.elementData = new Object[initialCapacity];
     this.capacityIncrement = capacityIncrement;
 }
@@ -166,24 +174,6 @@ public Vector(int initialCapacity) {
 /**直接默认容量是10*/
 public Vector() {
     this(10);
-}
-
-/**获取某个index的元素*/
-public synchronized E get(int index) {
-    if (index >= elementCount)
-        throw new ArrayIndexOutOfBoundsException(index);
-
-    return elementData(index);
-}
-
-/**给某个index设置值*/
-public synchronized E set(int index, E element) {
-    if (index >= elementCount)
-        throw new ArrayIndexOutOfBoundsException(index);
-
-    E oldValue = elementData(index);
-    elementData[index] = element;
-    return oldValue;
 }
 
 /**顺序插入*/
@@ -203,7 +193,8 @@ public void add(int index, E element) {
 public synchronized void insertElementAt(E obj, int index) {
     modCount++;
     if (index > elementCount) {
-        throw new ArrayIndexOutOfBoundsException(index + " > " + elementCount);
+        throw new ArrayIndexOutOfBoundsException(index
+                                                 + " > " + elementCount);
     }
     ensureCapacityHelper(elementCount + 1);
     System.arraycopy(elementData, index, elementData, index + 1, elementCount - index);
@@ -211,6 +202,33 @@ public synchronized void insertElementAt(E obj, int index) {
     elementCount++;
 }
 
+```
+
+紧接着，我们了解一下Vector的get，set方法
+ 
+```
+/**获取某个index的元素*/
+public synchronized E get(int index) {
+    if (index >= elementCount)
+        throw new ArrayIndexOutOfBoundsException(index);
+
+    return elementData(index);
+}
+
+/**给某个index设置值*/
+public synchronized E set(int index, E element) {
+    if (index >= elementCount)
+        throw new ArrayIndexOutOfBoundsException(index);
+
+    E oldValue = elementData(index);
+    elementData[index] = element;
+    return oldValue;
+}
+```
+
+最后是核心的扩容方法
+
+```
 /**确认容量*/
 private void ensureCapacityHelper(int minCapacity) {
     // overflow-conscious code
@@ -222,11 +240,12 @@ private void ensureCapacityHelper(int minCapacity) {
 private void grow(int minCapacity) {
     // overflow-conscious code
     int oldCapacity = elementData.length;
-    int newCapacity = oldCapacity + ((capacityIncrement > 0) ? capacityIncrement : oldCapacity);
+    int newCapacity = oldCapacity + ((capacityIncrement > 0) ?  capacityIncrement : oldCapacity);
     if (newCapacity - minCapacity < 0)
         newCapacity = minCapacity;
     if (newCapacity - MAX_ARRAY_SIZE > 0)
         newCapacity = hugeCapacity(minCapacity);
+    /** 数组拷贝*/    
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 
@@ -238,8 +257,8 @@ private static int hugeCapacity(int minCapacity) {
         Integer.MAX_VALUE :
         MAX_ARRAY_SIZE;
 }
-
 ```
+
 我们可以发现，对于核心方法的实现，除了synchronized，Vector的实现大同小异，构造函数支持扩增幅度，在未指定的情况下，扩容为原来的2倍。
 
 
