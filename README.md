@@ -19,3 +19,6 @@
 [集合简介](./src/main/java/xin/sunce/base/chapter6/集合简介.md)
 
 [ArrayList，Vector，LinkedList源码解析](./src/main/java/xin/sunce/base/chapter7/ArrayList，Vector，LinkedList源码解析.md)
+
+
+[探究并发编程](./src/main/java/xin/sunce/base/chapter8/探究并发编程.md)
