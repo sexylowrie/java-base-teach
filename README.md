@@ -18,7 +18,11 @@
 
 [集合简介](./src/main/java/xin/sunce/base/chapter6/集合简介.md)
 
+
 [ArrayList，Vector，LinkedList源码解析](./src/main/java/xin/sunce/base/chapter7/ArrayList，Vector，LinkedList源码解析.md)
 
 
 [探究并发编程](./src/main/java/xin/sunce/base/chapter8/探究并发编程.md)
+
+
+[设计模式之你真的了解单例模式么？](./src/main/java/xin/sunce/pattern/singleton/设计模式之你真的了解单例模式么.md)
