@@ -3,7 +3,7 @@
 #### ArrayList
 
 下图是ArrayList的类图
-![ArrayList](./images/ArrayList.png)
+![ArrayList](../images/ArrayList.png)
 
 思考一下代码执行结果如何？
 ```
@@ -152,7 +152,7 @@ private static int hugeCapacity(int minCapacity) {
 #### Vector
 
 下图是Vector的类图
-![Vector](./images/Vector.png)
+![Vector](../images/Vector.png)
 
 我们可以发现ArrayList跟Vector的类图基本一致，那么它们有什么区别呢，我们首先来看add()，add(int index, E element)方法
 
@@ -267,12 +267,12 @@ private static int hugeCapacity(int minCapacity) {
 
 在讲解LinkedList之前，我们先介绍一下双向链表的数据结构，让大家有个简要的了解。
 
-![双向链表数据结构](./images/双向链表数据结构.png)
+![双向链表数据结构](../images/双向链表数据结构.png)
 
 每个节点主要有三部分构成，分别是前节点引用pre，本节点date，后节点引用next；
 
 下图是LinkedList的类图
-![LinkedList](./images/LinkedList.png)
+![LinkedList](../images/LinkedList.png)
 
 紧接着我们来验证LinkList的源码实现：
 ```
