@@ -8,8 +8,7 @@ public class ProxyDemo {
 
 
     public static void main(String[] args) {
-        PayInterface payImpl = new PayImpl();
-        PayProxy payProxy = new PayProxy(payImpl);
+        PayProxy payProxy = new PayProxy(new PayImpl());
         payProxy.pay();
     }
 

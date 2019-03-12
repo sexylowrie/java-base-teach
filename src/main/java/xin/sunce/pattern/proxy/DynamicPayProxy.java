@@ -2,6 +2,7 @@ package xin.sunce.pattern.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * 动态代理
@@ -10,19 +11,27 @@ import java.lang.reflect.Method;
  */
 public class DynamicPayProxy implements InvocationHandler {
 
-    private Object object;
+    /**目标对象*/
+    private Object target;
 
-    private DynamicPayProxy() {
+
+    /**获取代理对象实例*/
+    public Object newProxyInstance(Object target) {
+        this.target = target;
+        Class<?> clazz = target.getClass();
+        return Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces(), this);
     }
 
-    public DynamicPayProxy(Object object) {
-        this.object = object;
-    }
-
+    /**方法调用*/
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("进入代理类");
-        method.invoke(object, args);
-        return null;
+        Object invoke = null;
+        try {
+            invoke = method.invoke(target, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return invoke;
     }
 }

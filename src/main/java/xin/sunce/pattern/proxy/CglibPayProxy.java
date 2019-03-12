@@ -13,17 +13,20 @@ import java.lang.reflect.Method;
  */
 public class CglibPayProxy implements MethodInterceptor {
 
-    public Object getInstance(Object target) {
+
+    /**
+     * 构建代理对象
+     */
+    public Object newProxyInstance(Object target) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target.getClass());
         enhancer.setCallback(this);
         return enhancer.create();
     }
 
-
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        System.out.println("进入代理类");
+        System.out.println("进入cglib代理类");
         return methodProxy.invokeSuper(o, objects);
     }
 }

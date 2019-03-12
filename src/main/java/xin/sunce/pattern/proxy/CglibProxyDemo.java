@@ -9,9 +9,8 @@ package xin.sunce.pattern.proxy;
 public class CglibProxyDemo {
 
     public static void main(String[] args) {
-        PayInterface payInterface = new PayImpl();
-        CglibPayProxy cglibPayProxy = new CglibPayProxy();
-        PayInterface instance = (PayInterface) cglibPayProxy.getInstance(payInterface);
-        instance.pay();
+        CglibPayProxy proxy = new CglibPayProxy();
+        PayInterface payInstance = (PayInterface) proxy.newProxyInstance(new PayImpl());
+        payInstance.pay();
     }
 }
