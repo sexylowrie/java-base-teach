@@ -14,8 +14,8 @@ public class ClassLoaderDemo {
         System.out.println(ClassLoader.getSystemClassLoader().getParent());
         System.out.println(ClassLoader.getSystemClassLoader().getParent().getParent());
 
-        FileClassLoader classLoader1 =new FileClassLoader("C:\\Users\\LENOVO\\Desktop\\");
-        FileClassLoader classLoader2 =new FileClassLoader("C:\\Users\\LENOVO\\Desktop\\");
+        FileClassLoader classLoader1 = new FileClassLoader("C:\\Users\\LENOVO\\Desktop\\");
+        FileClassLoader classLoader2 = new FileClassLoader("C:\\Users\\LENOVO\\Desktop\\");
         try {
             Class<?> c1 = classLoader1.loadClass("Hello");
             Class<?> c2 = classLoader1.loadClass("Hello");
