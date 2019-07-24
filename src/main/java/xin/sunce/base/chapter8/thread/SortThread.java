@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter8;
+package xin.sunce.base.chapter8.thread;
 
 /**
  * 排序线程执行顺序T1,T2,T3

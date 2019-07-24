@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter4;
+package xin.sunce.base.chapter4.string;
 
 public class StringDemo {
 

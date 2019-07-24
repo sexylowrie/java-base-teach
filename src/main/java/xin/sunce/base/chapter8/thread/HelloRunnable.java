@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter8;
+package xin.sunce.base.chapter8.thread;
 
 /**
  * 声明并启动方式二

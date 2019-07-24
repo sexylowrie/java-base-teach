@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter1;
+package xin.sunce.base.chapter1.basetype;
 
 public class CalculateDemo2 {
 

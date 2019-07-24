@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter5;
+package xin.sunce.base.chapter5.array;
 
 import java.util.Arrays;
 

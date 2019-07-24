@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter8;
+package xin.sunce.base.chapter8.thread;
 
 /**
  * 线程状态 示例

@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter8;
+package xin.sunce.base.chapter8.thread;
 
 import java.util.List;
 import java.util.Vector;

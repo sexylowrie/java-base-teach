@@ -19,7 +19,7 @@
 [集合简介](articles/集合简介.md)
 
 
-[ArrayList，Vector，LinkedList源码解析](articles/ArrayList，Vector，LinkedList源码解析.md)
+[ArrayList，Vector，LinkedList源码解析](articles/ArrayList,Vector,LinkedList源码解析.md)
 
 
 [探究并发编程](articles/探究并发编程.md)
