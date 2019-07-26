@@ -14,6 +14,9 @@ public abstract class ShapeDecorator implements Shape {
         this.shape = shape;
     }
 
+    /**
+     * 装饰颜色
+     */
     protected abstract void color();
 
     @Override
