@@ -1,4 +1,4 @@
-package xin.sunce.base.chapter7;
+package xin.sunce.base.chapter7.collection;
 
 import java.util.*;
 

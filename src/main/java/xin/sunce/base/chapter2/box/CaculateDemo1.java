@@ -1,11 +1,11 @@
-package xin.sunce.base.chapter1.meta;
+package xin.sunce.base.chapter2.box;
 
 /**
  * 基础类型
  *
  * @author Lowrie
  */
-public class BaseDemo1 {
+public class CaculateDemo1 {
 
     public static void main(String[] args) {
 
