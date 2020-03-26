@@ -1,6 +1,11 @@
-package xin.sunce.base.chapter1.basetype;
+package xin.sunce.base.chapter1.meta;
 
-public class CalculateDemo {
+/**
+ * 基础类型
+ *
+ * @author Lowrie
+ */
+public class BaseDemo1 {
 
     public static void main(String[] args) {
 
