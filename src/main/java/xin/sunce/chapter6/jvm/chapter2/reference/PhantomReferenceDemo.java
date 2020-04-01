@@ -18,7 +18,7 @@ public class PhantomReferenceDemo {
     /**
      * 当软弱虚引用，需要被回收时，会放入到引用队列中保存一下。
      * 虚引用无论何时通过PhantomReference#get都会返回null，虚引用与对象的生命周期无关，
-     * 这种引用关系形同虚设
+     * 这种引用关系形同虚设；使用时必须与ReferenceQueue配合使用，看其构造函数可知。
      */
     public static void main(String[] args) throws InterruptedException {
         testWeakReference();
