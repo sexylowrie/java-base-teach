@@ -22,7 +22,7 @@ public class OOMEMeta {
     }
 
     /**
-     * 启动参数：
+     * 启动参数：注意配置全局的CGlib包
      * -XX:MetaspaceSize=10m -XX:MaxMetaspaceSize=10m
      * java.lang.OutOfMemoryError: Metaspace
      */
