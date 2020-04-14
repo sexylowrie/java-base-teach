@@ -5,6 +5,8 @@ import java.util.Arrays;
 /**
  * 自定义ArrayList
  * 插入元素，删除元素，获取元素
+ *
+ * @author Lowrie
  */
 public class MyArrayList {
 
@@ -61,7 +63,19 @@ public class MyArrayList {
     }
 
     /**
-     * 新增元素
+     * 顺序写
+     *
+     * @param element
+     * @return
+     */
+    public boolean add(Object element) {
+        ensureCapacity(size + 1);
+        data[size++] = element;
+        return true;
+    }
+
+    /**
+     * 随机写
      * 长度为5，给index为2新增元素0
      * src:  1 2 3 4 5 ;
      * dest: 1 2 0 3 4 5 ;
@@ -69,13 +83,29 @@ public class MyArrayList {
      * @param index
      * @param element
      */
-    public void add(int index, Object element) {
+    public boolean add(int index, Object element) {
         rangeCheck(index);
-        //TODO 确认容量以及扩容
+        ensureCapacity(size + 1);
         int copyLength = size - index;
         System.arraycopy(data, index, data, index + 1, copyLength);
         data[index] = element;
         size++;
+        return true;
+    }
+
+    private void ensureCapacity(int capacity) {
+        if (capacity - data.length > 0) {
+            grow(capacity);
+        }
+    }
+
+    private void grow(int capacity) {
+        int oldCapacity = data.length;
+        int newCapacity = oldCapacity + oldCapacity >> 1;
+        if (newCapacity < capacity) {
+            newCapacity = capacity;
+        }
+        data = Arrays.copyOf(data, newCapacity);
     }
 
     @Override
@@ -85,12 +115,12 @@ public class MyArrayList {
     }
 
     public static void main(String[] args) {
-        MyArrayList list = new MyArrayList();
-        list.add(0, 1);
-        list.add(1, 2);
-        list.add(2, 3);
-        list.add(3, 4);
-        list.add(4, 5);
+        MyArrayList list = new MyArrayList(22);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
         System.out.println(list);
     }
 }
