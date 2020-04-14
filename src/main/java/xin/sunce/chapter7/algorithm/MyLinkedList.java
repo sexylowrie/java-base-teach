@@ -1,6 +1,5 @@
 package xin.sunce.chapter7.algorithm;
 
-import java.util.Arrays;
 
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
