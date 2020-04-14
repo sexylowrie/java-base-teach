@@ -1,6 +1,10 @@
 package xin.sunce.chapter7.algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 自定义ArrayList
@@ -32,6 +36,7 @@ public class MyArrayList {
      * @param index
      * @return
      * @see java.util.ArrayList
+     * @see java.util.Vector
      */
     public Object get(int index) {
         rangeCheck(index);
@@ -114,13 +119,13 @@ public class MyArrayList {
                 ", size=" + size + "]";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         MyArrayList list = new MyArrayList();
+        list.add(5);
         list.add(1);
-        list.add(2);
         list.add(3);
         list.add(4);
-        list.add(5);
+        list.add(2);
         System.out.println(list);
     }
 }
