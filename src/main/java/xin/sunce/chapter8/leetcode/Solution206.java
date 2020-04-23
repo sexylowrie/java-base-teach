@@ -1,7 +1,5 @@
 package xin.sunce.chapter8.leetcode;
 
-import java.util.StringJoiner;
-
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  * <p>
@@ -83,22 +81,6 @@ public class Solution206 {
         System.out.println(pre);
 
     }
-
 }
 
-class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode(int x) {
-        val = x;
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner("->")
-                .add(val + "")
-                .add(next + "")
-                .toString();
-    }
-}
