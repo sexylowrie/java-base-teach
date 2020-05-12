@@ -24,6 +24,22 @@ public class ResourceConfig {
         this.maxIdle = builder.maxIdle;
     }
 
+    public long getTimeout() {
+        return timeout;
+    }
+
+    public boolean isRetry() {
+        return retry;
+    }
+
+    public long getMaxTotal() {
+        return maxTotal;
+    }
+
+    public long getMaxIdle() {
+        return maxIdle;
+    }
+
     @Override
     public String toString() {
         return "ResourceConfig{" +
