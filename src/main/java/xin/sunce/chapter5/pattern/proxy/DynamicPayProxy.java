@@ -11,27 +11,28 @@ import java.lang.reflect.Proxy;
  */
 public class DynamicPayProxy implements InvocationHandler {
 
-    /**目标对象*/
+    /**
+     * 目标对象
+     */
     private Object target;
 
 
-    /**获取代理对象实例*/
+    /**
+     * 获取代理对象实例
+     */
     public Object newProxyInstance(Object target) {
         this.target = target;
         Class<?> clazz = target.getClass();
         return Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces(), this);
     }
 
-    /**方法调用*/
+    /**
+     * 方法调用
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("进入代理类");
-        Object invoke = null;
-        try {
-            invoke = method.invoke(target, args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return invoke;
+        Object result = method.invoke(target, args);
+        return result;
     }
 }
