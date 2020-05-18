@@ -6,9 +6,9 @@ package xin.sunce.chapter5.pattern.decorator;
  * @author lowrie
  * @date 2019-07-26
  */
-public class ColorDecorator extends ShapeDecorator {
+public class ColorShape extends ShapeDecorator {
 
-    public ColorDecorator(Shape shape) {
+    public ColorShape(Shape shape) {
         super(shape);
     }
 
