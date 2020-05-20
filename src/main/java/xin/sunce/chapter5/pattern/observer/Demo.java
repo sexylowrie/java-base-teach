@@ -1,7 +1,7 @@
 package xin.sunce.chapter5.pattern.observer;
 
 /**
- * 观察者演示Demo
+ * 观察者简单演示Demo
  */
 public class Demo {
 
