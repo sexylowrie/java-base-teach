@@ -10,7 +10,7 @@ public class DecoratorDemo {
     public static void main(String[] args) {
         Shape circle = new Circle();
         circle.draw();
-        ColorDecorator colorfulCircle=new ColorDecorator(circle);
+        ColorShape colorfulCircle=new ColorShape(circle);
         colorfulCircle.draw();
     }
 }
