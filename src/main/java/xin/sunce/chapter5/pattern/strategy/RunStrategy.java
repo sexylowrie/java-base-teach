@@ -6,8 +6,6 @@ package xin.sunce.chapter5.pattern.strategy;
  * @author lowrie
  * @date 2019-08-29
  */
-//NewUpStrategy使用
-@StrategyAnnotation
 public class RunStrategy implements Strategy {
 
     @Override
