@@ -3,7 +3,7 @@ package xin.sunce.chapter6.jvm.chapter3.error;
 import java.nio.ByteBuffer;
 
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  * <p>
  * 直接内存
  *

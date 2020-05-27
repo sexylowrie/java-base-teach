@@ -1,7 +1,7 @@
 package xin.sunce.chapter6.jvm.chapter3.error;
 
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  * <p>
  * 堆内存溢出模拟
  *

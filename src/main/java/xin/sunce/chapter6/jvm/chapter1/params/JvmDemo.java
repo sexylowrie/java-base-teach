@@ -1,7 +1,7 @@
 package xin.sunce.chapter6.jvm.chapter1.params;
 
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  *
  * @author lowrie
  * @version 1.0.0
