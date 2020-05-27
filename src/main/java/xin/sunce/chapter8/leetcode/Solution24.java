@@ -1,7 +1,7 @@
 package xin.sunce.chapter8.leetcode;
 
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  * <p>
  * 24. 两两交换链表中的节点
  * <p>
@@ -24,22 +24,37 @@ public class Solution24 {
     /**
      * 递归解法
      */
+    public ListNode swapPairs(ListNode head) {
+        ListNode tmp = new ListNode(-1);
+        tmp.next = head;//tmp#next 指针指向node1地址
+        ListNode pre = tmp;//pre 指针指向tmp地址
+        while (head != null && head.next != null) {
+            ListNode node1 = head;//node1地址
+            ListNode node2 = head.next;//node2地址
+            pre.next = node2;//tmp#next 指针指向node2地址
+            node1.next = node2.next;//node1#next 指针指向node2#next地址
+            node2.next = node1;//node2#next 指针指向node1地址
+            pre = node1;//pre 指向node1地址
+            head = node1.next;// head指向 node1#next
+        }
+        return tmp.next;
+    }
 
     /**
      * 迭代解法
      */
-    public ListNode swapPairs(ListNode head) {
+    public ListNode swapPairs1(ListNode head) {
         ListNode tmp = new ListNode(-1);
-        tmp.next = head;
-        ListNode pre = tmp;
+        tmp.next = head;//tmp#next 指针指向node1地址
+        ListNode pre = tmp;//pre 指针指向tmp地址
         while (head != null && head.next != null) {
-            ListNode node1 = head;
-            ListNode node2 = head.next;
-            pre.next = node2;
-            node1.next = node2.next;
-            node2.next = node1;
-            pre = node1;
-            head = node1.next;
+            ListNode node1 = head;//node1地址
+            ListNode node2 = head.next;//node2地址
+            pre.next = node2;//tmp#next 指针指向node2地址
+            node1.next = node2.next;//node1#next 指针指向node2#next地址
+            node2.next = node1;//node2#next 指针指向node1地址
+            pre = node1;//pre 指向node1地址
+            head = node1.next;// head指向 node1#next
         }
         return tmp.next;
     }

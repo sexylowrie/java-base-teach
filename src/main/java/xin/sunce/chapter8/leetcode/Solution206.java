@@ -1,7 +1,9 @@
 package xin.sunce.chapter8.leetcode;
 
+import java.util.List;
+
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  * <p>
  * 206. 反转链表
  * <p>
@@ -62,6 +64,24 @@ public class Solution206 {
         return pre;
     }
 
+    /**
+     * 1，2，3，4，5
+     * 2，1，3，4，5
+     * 3，2，1，4，5
+     * 4，3，2，1，5
+     * 5，4，3，2，1
+     */
+    public ListNode reverseList2(ListNode head) {
+        ListNode pre = head;
+        while (head != null && head.next != null) {
+            ListNode tmp = head.next;
+            head.next = tmp.next;
+            tmp.next = pre;
+            pre = tmp;
+        }
+        return pre;
+    }
+
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
@@ -70,9 +90,13 @@ public class Solution206 {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
         Solution206 solution = new Solution206();
-        System.out.println("遍历解法：");
+        System.out.println("遍历解法1：");
         System.out.println(head);
         ListNode pre = solution.reverseList1(head);
+        System.out.println(pre);
+        System.out.println("遍历解法2：");
+        System.out.println(pre);
+        pre = solution.reverseList2(pre);
         System.out.println(pre);
         System.out.println("递归解法：");
         System.out.println(pre);

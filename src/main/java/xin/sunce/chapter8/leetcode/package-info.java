@@ -1,5 +1,5 @@
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  * <p>
  * 力扣练习题
  *

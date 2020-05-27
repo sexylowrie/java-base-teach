@@ -3,7 +3,7 @@ package xin.sunce.chapter8.leetcode;
 import java.util.StringJoiner;
 
 /**
- * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
+ * Copyright (C), 2010-2020, sun ce. Personal.
  *
  * @author lowrie
  * @version 1.0.0
