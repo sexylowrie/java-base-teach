@@ -1,7 +1,5 @@
 package xin.sunce.chapter5.pattern.action.visitor;
 
-import java.util.StringJoiner;
-
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  *

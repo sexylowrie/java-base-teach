@@ -15,7 +15,7 @@ public class NewStrategyFactory {
         } else if (TypeConstant.RUN.equals(type)) {
             return new RunStrategy();
         } else if (TypeConstant.RALIWAY.equals(type)) {
-            return new RailwayStrategy();
+            return new TrainStrategy();
         } else {
             return null;
         }

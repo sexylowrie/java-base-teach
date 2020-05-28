@@ -6,9 +6,9 @@ package xin.sunce.chapter5.pattern.action.strategy;
  * @author lowrie
  * @date 2019-08-29
  */
-public class GoHomeDemo {
+public class Demo {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //乘坐出租车回家
         Content content = new Content(StrategyFactory.createStrategy(TypeConstant.TAXI));
         content.execute();
@@ -16,7 +16,7 @@ public class GoHomeDemo {
         Content contentNew = new Content(NewStrategyFactory.createStrategy(TypeConstant.RUN));
         contentNew.execute();
 
-        Content contentNewUp = new Content(NewUpStrategyFactory.createStrategy(TypeConstant.RALIWAY));
+        Content contentNewUp = new Content(NewUpStrategyFactory.createStrategy(TypeConstant.TRAIN));
         contentNewUp.execute();
     }
 

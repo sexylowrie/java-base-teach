@@ -1,7 +1,6 @@
 package xin.sunce.chapter5.pattern.action.iterator;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.

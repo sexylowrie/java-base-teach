@@ -6,7 +6,7 @@ package xin.sunce.chapter5.pattern.action.strategy;
  * @author lowrie
  * @date 2019-08-29
  */
-public class RailwayStrategy implements Strategy {
+public class TrainStrategy implements Strategy {
 
     @Override
     public void goHome() {

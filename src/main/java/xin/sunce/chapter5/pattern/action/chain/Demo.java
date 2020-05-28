@@ -1,7 +1,7 @@
 package xin.sunce.chapter5.pattern.action.chain;
 
 /**
- * 演示类
+ * 责任链模式演示类
  */
 public class Demo {
 

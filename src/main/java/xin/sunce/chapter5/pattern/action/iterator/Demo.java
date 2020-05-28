@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  * <p>
- * 迭代器演示Demo
+ * 迭代器演示类
  *
  * @author lowrie
  * @version 1.0.0

@@ -3,7 +3,7 @@ package xin.sunce.chapter5.pattern.action.state;
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  * <p>
- * 演示案例
+ * 状态模式演示类
  *
  * @author lowrie
  * @version 1.0.0

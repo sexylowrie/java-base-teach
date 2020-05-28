@@ -15,7 +15,7 @@ public class HandlerChain {
     }
 
     public void handler() {
-        for(Handler handler :handlers){
+        for (Handler handler : handlers) {
             handler.doHandle();
         }
     }

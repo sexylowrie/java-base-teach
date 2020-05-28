@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  * <p>
- * 备忘录模式演示案例
+ * 备忘录模式演示类
  *
  * @author lowrie
  * @version 1.0.0

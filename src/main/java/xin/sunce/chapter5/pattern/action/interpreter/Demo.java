@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Copyright (C), 2010-2020, xxx payment. Co., Ltd.
  * <p>
- * 解释器模式演示案例
+ * 解释器模式演示类
  * <p>
  * <p>
  * 场景描述：假设要你实现一个规则引擎，具体的规则包括 && ，> ，<
@@ -20,8 +20,8 @@ public class Demo {
 
     public static void main(String[] args) {
         Map<String, Long> params = new HashMap<>();
-        params.put("key1",101L);
-        params.put("key2",90L);
+        params.put("key1", 101L);
+        params.put("key2", 90L);
 //        params.put("key3",90L);
         String expression = "key1>100&key2<200&key3>400";
         AndExpression and = new AndExpression(expression);

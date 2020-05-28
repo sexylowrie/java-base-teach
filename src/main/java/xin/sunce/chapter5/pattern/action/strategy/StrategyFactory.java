@@ -14,7 +14,7 @@ public class StrategyFactory {
 
     static {
         strategies.put(TypeConstant.RUN, new RunStrategy());
-        strategies.put(TypeConstant.RALIWAY, new RailwayStrategy());
+        strategies.put(TypeConstant.RALIWAY, new TrainStrategy());
         strategies.put(TypeConstant.TAXI, new TaxiStrategy());
     }
 

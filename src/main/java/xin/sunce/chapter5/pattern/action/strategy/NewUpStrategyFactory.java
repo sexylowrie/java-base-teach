@@ -16,7 +16,7 @@ public class NewUpStrategyFactory {
 
     static {
         strategies.put(TypeConstant.RUN, RunStrategy.class);
-        strategies.put(TypeConstant.RALIWAY, RailwayStrategy.class);
+        strategies.put(TypeConstant.RALIWAY, TrainStrategy.class);
         strategies.put(TypeConstant.TAXI, TaxiStrategy.class);
     }
 

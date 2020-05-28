@@ -1,7 +1,5 @@
 package xin.sunce.chapter5.pattern.action.command;
 
-import xin.sunce.chapter5.pattern.action.state.Mario;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
