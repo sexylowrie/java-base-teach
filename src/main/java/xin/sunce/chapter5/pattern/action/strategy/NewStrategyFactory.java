@@ -14,7 +14,7 @@ public class NewStrategyFactory {
             return new TaxiStrategy();
         } else if (TypeConstant.RUN.equals(type)) {
             return new RunStrategy();
-        } else if (TypeConstant.RALIWAY.equals(type)) {
+        } else if (TypeConstant.TRAIN.equals(type)) {
             return new TrainStrategy();
         } else {
             return null;
